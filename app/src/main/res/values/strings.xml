@@ -12,4 +12,6 @@
     <string name="dont_have_account">Don\'t have account? Sign Up!</string>
     <string name="or">OR</string>
     <string name="full_name">Full Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="already_have_an_account">Already have an account? Sign in!</string>
 </resources>
