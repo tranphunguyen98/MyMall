@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "809785020119",
+    "firebase_url": "https://my-mall-7dbd7.firebaseio.com",
+    "project_id": "my-mall-7dbd7",
+    "storage_bucket": "my-mall-7dbd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809785020119:android:5e214c11416b88b3f16a92",
+        "android_client_info": {
+          "package_name": "com.tranphunguyen.mymall"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "809785020119-bsupjbhkqn7ot7frq8gqu95ogksjcj2u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tranphunguyen.mymall",
+            "certificate_hash": "128b1a4b2dbdcbc37af813a922cce7531c05338c"
+          }
+        },
+        {
+          "client_id": "809785020119-ia4brvs53t44vm1ek6v0ign6cuovngpf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJUZLL4gZ82tr_hRfuRMvbUiE9tJEacR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "809785020119-ia4brvs53t44vm1ek6v0ign6cuovngpf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
