@@ -5,13 +5,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
-    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
     <string name="sign_in">Sign In</string>
     <string name="logo">logo</string>
     <string name="close">Close</string>
-    <string name="dont_have_account">Don\'t have account? Sign Up!</string>
+    <string name="dont_have_account"><u>Don\'t have account? Sign Up!</u></string>
     <string name="or">OR</string>
     <string name="full_name">Full Name</string>
     <string name="sign_up">Sign Up</string>
-    <string name="already_have_an_account">Already have an account? Sign in!</string>
+    <string name="already_have_an_account"><u>Already have an account? Sign in!</u></string>
+    <string name="comfirm_password">Comfirm Password</string>
 </resources>

@@ -74,10 +74,9 @@
         style="@style/EditTextStandard"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/comfirm_password"
         android:importantForAutofill="no"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_password"
         tools:targetApi="o" />
