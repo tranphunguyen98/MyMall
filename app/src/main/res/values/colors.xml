@@ -5,4 +5,5 @@
     <color name="colorAccent">#FFFFFF</color>
     <color name="textColorHint">#70FFFFFF</color>
     <color name="btnRed">#9f0000</color>
+    <color name="btnTextColorDisable">#50ffffff</color>
 </resources>
