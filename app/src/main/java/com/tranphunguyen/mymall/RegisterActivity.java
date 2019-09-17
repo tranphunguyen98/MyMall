@@ -16,6 +16,7 @@ public class RegisterActivity extends AppCompatActivity implements
     FrameLayout frameLayout;
 
     FragmentManager fragmentManager = getSupportFragmentManager();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity implements
     }
 
     private void addFragment(Fragment fragment) {
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
 
         fragmentTransaction.add(frameLayout.getId(),fragment);
@@ -40,6 +42,8 @@ public class RegisterActivity extends AppCompatActivity implements
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+        fragmentTransaction.setCustomAnimations(R.anim.slide_from_right,R.anim.slide_out_from_left);
+
         fragmentTransaction.replace(frameLayout.getId(),new SignUpFragment());
 
         fragmentTransaction.commit();
@@ -50,6 +54,8 @@ public class RegisterActivity extends AppCompatActivity implements
     public void onClickAlreadyHaveAccount() {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.setCustomAnimations(R.anim.slide_from_left,R.anim.slide_out_from_right);
 
         fragmentTransaction.replace(frameLayout.getId(),new SignInFragment());
 
