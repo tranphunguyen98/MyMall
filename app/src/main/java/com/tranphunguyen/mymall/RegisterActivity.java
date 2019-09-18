@@ -1,6 +1,5 @@
 package com.tranphunguyen.mymall;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -9,15 +8,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.tranphunguyen.mymall.Utils.Constant;
 import com.tranphunguyen.mymall.Utils.Utils;
@@ -78,25 +72,22 @@ public class RegisterActivity extends AppCompatActivity implements
         assert signInFragment != null;
         signInFragment.onLoadingStart();
 
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
 
-                if (task.isSuccessful()) {
+            if (task.isSuccessful()) {
 
-                    SystemClock.sleep(1000);
+                SystemClock.sleep(1000);
 
-                    jumpToMainActivitiy();
+                jumpToMainActivitiy();
 
-                } else {
+            } else {
 
-                    Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
-
-                }
-
-                signInFragment.onLoadingStop();
+                Toast.makeText(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
 
             }
+
+            signInFragment.onLoadingStop();
+
         });
 
     }
@@ -120,27 +111,32 @@ public class RegisterActivity extends AppCompatActivity implements
         signInFragment.onLoadingStart();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
 
-                            Map<String, String> userData = new HashMap<>();
-                            userData.put(Constant.KEY_FULL_NAME, fullName);
+                        Map<String, String> userData = new HashMap<>();
+                        userData.put(Constant.KEY_FULL_NAME, fullName);
 
-                            addDataToFireStore(Constant.USER_COLECTION,userData);
-                            jumpToMainActivitiy();
+                        addDataToFireStore(Constant.USER_COLECTION, userData);
+                        jumpToMainActivitiy();
 
-                        } else {
+                    } else {
 
-                            Utils.makeLongToast(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage());
-
-                        }
-
-                        signInFragment.onLoadingStop();
+                        Utils.makeLongToast(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage());
 
                     }
+
+                    signInFragment.onLoadingStop();
+
                 });
+
+    }
+
+    @Override
+    public void onClose() {
+
+        jumpToMainActivitiy();
+        this.finish();
 
     }
 
@@ -157,21 +153,18 @@ public class RegisterActivity extends AppCompatActivity implements
     private void addDataToFireStore(String collection, Object data) {
 
         firebaseFirestore.collection(collection)
-                .add(data).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
+                .add(data).addOnCompleteListener(task -> {
 
-                if (!task.isSuccessful()) {
+                    if (!task.isSuccessful()) {
 
-                    Utils.makeLongToast(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage());
+                        Utils.makeLongToast(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage());
 
-                } else {
-                    Utils.makeLongToast(RegisterActivity.this, "Successful!");
+                    } else {
+                        Utils.makeLongToast(RegisterActivity.this, "Successful!");
 
-                }
+                    }
 
-            }
-        });
+                });
 
     }
 }

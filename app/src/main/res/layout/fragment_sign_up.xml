@@ -8,7 +8,7 @@
     tools:context=".SignInFragment">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/btn_close_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"

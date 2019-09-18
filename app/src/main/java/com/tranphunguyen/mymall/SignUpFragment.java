@@ -3,7 +3,6 @@ package com.tranphunguyen.mymall;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,10 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.tranphunguyen.mymall.Utils.Constant;
 
 
@@ -40,7 +39,7 @@ public class SignUpFragment extends Fragment {
     private EditText edtEmail, edtFullName, edtPassword, edtComfirmPassword;
     private Button btnSignUp;
     private ProgressBar prgSignUp;
-    private FirebaseAuth firebaseAuth;
+    private ImageButton btnClose;
 
     private Drawable iconError;
 
@@ -65,7 +64,6 @@ public class SignUpFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -86,14 +84,7 @@ public class SignUpFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        alreadyHaveAnAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                mListener.onClickAlreadyHaveAccount();
-
-            }
-        });
+        alreadyHaveAnAccount.setOnClickListener(v -> mListener.onClickAlreadyHaveAccount());
 
         setErrorIcon();
 
@@ -102,30 +93,27 @@ public class SignUpFragment extends Fragment {
         onTextChangeEdtPassword();
         onTextChangeEdtComfirmPassword();
 
-        btnSignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        btnSignUp.setOnClickListener(v -> mListener.onSignUp(
+                edtEmail.getText().toString(),
+                edtPassword.getText().toString(),
+                edtFullName.getText().toString()
+        ));
 
-                mListener.onSignUp(
-                        edtEmail.getText().toString(),
-                        edtPassword.getText().toString(),
-                        edtFullName.getText().toString()
-                );
+        btnClose.setOnClickListener( v -> {
 
-            }
+            mListener.onClose();
+
         });
-
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onClickAlreadyHaveAccount();
-//        }
-    }
+//    public void onButtonPressed(Uri uri) {
+////        if (mListener != null) {
+////            mListener.onClickAlreadyHaveAccount();
+////        }
+//    }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentSignUpInteractionListener) {
             mListener = (OnFragmentSignUpInteractionListener) context;
@@ -167,6 +155,8 @@ public class SignUpFragment extends Fragment {
         void onClickAlreadyHaveAccount();
 
         void onSignUp(String email, String password, String FullName);
+
+        void onClose();
     }
 
     private void findView(View view) {
@@ -178,6 +168,7 @@ public class SignUpFragment extends Fragment {
         edtComfirmPassword = view.findViewById(R.id.edt_confirm_password);
         btnSignUp = view.findViewById(R.id.btn_sign_up);
         prgSignUp = view.findViewById(R.id.prg_sign_up);
+        btnClose = view.findViewById(R.id.btn_close_sign_up);
 
     }
 

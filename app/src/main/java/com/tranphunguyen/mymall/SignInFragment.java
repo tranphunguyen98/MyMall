@@ -3,7 +3,6 @@ package com.tranphunguyen.mymall;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,10 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tranphunguyen.mymall.Utils.Constant;
+
+import java.util.Objects;
 
 
 /**
@@ -44,6 +46,7 @@ public class SignInFragment extends Fragment {
     private Drawable iconError;
 
     private ProgressBar prgSignIn;
+    private ImageButton btnClose;
 
     private OnFragmentSignInInteractionListener mListener;
 
@@ -57,7 +60,6 @@ public class SignInFragment extends Fragment {
      *
      * @return A new instance of fragment SignInFragment.
      */
-    // TODO: Rename and change types and number of parameters
     static SignInFragment newInstance() {
         return new SignInFragment();
     }
@@ -79,6 +81,7 @@ public class SignInFragment extends Fragment {
         edtPassword = view.findViewById(R.id.edt_password);
         btnSignIn = view.findViewById(R.id.btn_sign_in);
         prgSignIn = view.findViewById(R.id.prg_sign_in);
+        btnClose = view.findViewById(R.id.btn_close_sign_in);
 
         iconError = getResources().getDrawable(R.drawable.ic_round_error_16dp);
         iconError.setBounds(new Rect(0, 0, iconError.getIntrinsicWidth(), iconError.getIntrinsicHeight()));
@@ -90,39 +93,26 @@ public class SignInFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        dontHaveAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        dontHaveAccount.setOnClickListener(v -> mListener.onClickDontHaveAccount());
 
-                mListener.onClickDontHaveAccount();
+        btnSignIn.setOnClickListener(v -> mListener.onSignIn(edtEmail.getText().toString(),edtPassword.getText().toString()));
 
-            }
-        });
-
-        btnSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                mListener.onSignIn(edtEmail.getText().toString(),edtPassword.getText().toString());
-
-            }
-        });
+        btnClose.setOnClickListener(v -> mListener.onClose());
 
         onTextChangeEdtEmail();
         onTextChangeEdtPassword();
 
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
+//    public void onButtonPressed(Uri uri) {
 //        if (mListener != null) {
 //            mListener.onClickDontHaveAccount(uri);
 //        }
-    }
+//    }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(Objects.requireNonNull(context));
         if (context instanceof OnFragmentSignInInteractionListener) {
             mListener = (OnFragmentSignInInteractionListener) context;
         } else {
@@ -164,6 +154,8 @@ public class SignInFragment extends Fragment {
         void onClickDontHaveAccount();
 
         void onSignIn(String email, String password);
+
+        void onClose();
     }
 
 
