@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tranphunguyen.mymall.Utils.Contanst;
@@ -42,6 +43,8 @@ public class SignInFragment extends Fragment {
 
     private Drawable iconError;
 
+    private ProgressBar prgSignIn;
+
     private OnFragmentSignInInteractionListener mListener;
 
     public SignInFragment() {
@@ -52,12 +55,10 @@ public class SignInFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment SignInFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SignInFragment newInstance(String param1, String param2) {
+    static SignInFragment newInstance() {
         return new SignInFragment();
     }
 
@@ -77,6 +78,7 @@ public class SignInFragment extends Fragment {
         edtEmail = view.findViewById(R.id.edt_email);
         edtPassword = view.findViewById(R.id.edt_password);
         btnSignIn = view.findViewById(R.id.btn_sign_in);
+        prgSignIn = view.findViewById(R.id.prg_sign_in);
 
         iconError = getResources().getDrawable(R.drawable.ic_round_error_16dp);
         iconError.setBounds(new Rect(0, 0, iconError.getIntrinsicWidth(), iconError.getIntrinsicHeight()));
@@ -93,6 +95,15 @@ public class SignInFragment extends Fragment {
             public void onClick(View v) {
 
                 mListener.onClickDontHaveAccount();
+
+            }
+        });
+
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                mListener.onSignIn(edtEmail.getText().toString(),edtPassword.getText().toString());
 
             }
         });
@@ -126,6 +137,18 @@ public class SignInFragment extends Fragment {
         mListener = null;
     }
 
+    void onLoadingStart() {
+
+        prgSignIn.setVisibility(View.VISIBLE);
+
+    }
+
+    void onLoadingStop() {
+
+        prgSignIn.setVisibility(View.INVISIBLE);
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -139,6 +162,8 @@ public class SignInFragment extends Fragment {
     public interface OnFragmentSignInInteractionListener {
 
         void onClickDontHaveAccount();
+
+        void onSignIn(String email, String password);
     }
 
 

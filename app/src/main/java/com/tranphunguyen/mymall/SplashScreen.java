@@ -12,7 +12,7 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-//        SystemClock.sleep(2000);
+        SystemClock.sleep(1000);
 
         jumpToRegisterActivity();
 

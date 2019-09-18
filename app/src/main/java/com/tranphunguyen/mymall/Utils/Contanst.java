@@ -7,4 +7,7 @@ public class Contanst {
 
     public static String REGEX_EMAIL = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 
+
+    public static String TAG_SIGN_IN_FRAG = "SignIn";
+    public static String TAG_SIGN_UP_FRAG = "SignUp";
 }

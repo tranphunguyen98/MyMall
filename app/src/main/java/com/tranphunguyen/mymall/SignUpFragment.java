@@ -80,6 +80,7 @@ public class SignUpFragment extends Fragment {
         edtPassword = view.findViewById(R.id.edt_password);
         edtComfirmPassword = view.findViewById(R.id.edt_confirm_password);
         btnSignUp = view.findViewById(R.id.btn_sign_up);
+        prgSignUp = view.findViewById(R.id.prg_sign_up);
 
         iconError = getResources().getDrawable(R.drawable.ic_round_error_16dp);
         iconError.setBounds(new Rect(0, 0, iconError.getIntrinsicWidth(), iconError.getIntrinsicHeight()));
@@ -111,10 +112,7 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
-//                firebaseAuth.createUserWithEmailAndPassword()
-
-//                firebaseAuth.addAuthStateListener();
+            mListener.onSignUp(edtEmail.getText().toString(),edtPassword.getText().toString());
 
             }
         });
@@ -145,6 +143,18 @@ public class SignUpFragment extends Fragment {
         mListener = null;
     }
 
+    void onLoadingStart() {
+
+        prgSignUp.setVisibility(View.VISIBLE);
+
+    }
+
+    void onLoadingStop() {
+
+        prgSignUp.setVisibility(View.INVISIBLE);
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -156,8 +166,8 @@ public class SignUpFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentSignUpInteractionListener {
-        // TODO: Update argument type and name
         void onClickAlreadyHaveAccount();
+        void onSignUp(String email, String password);
     }
 
     private void setErrorIcon() {
