@@ -3,6 +3,7 @@ package com.tranphunguyen.mymall;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,14 +31,14 @@ import java.util.Objects;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentSignInInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link SignInFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class SignInFragment extends Fragment {
 
-    private TextView dontHaveAccount;
+    private TextView dontHaveAccount, tvForgotPassword;
 
     private EditText edtEmail, edtPassword;
 
@@ -48,7 +49,7 @@ public class SignInFragment extends Fragment {
     private ProgressBar prgSignIn;
     private ImageButton btnClose;
 
-    private OnFragmentSignInInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
     public SignInFragment() {
         // Required empty public constructor
@@ -82,6 +83,7 @@ public class SignInFragment extends Fragment {
         btnSignIn = view.findViewById(R.id.btn_sign_in);
         prgSignIn = view.findViewById(R.id.prg_sign_in);
         btnClose = view.findViewById(R.id.btn_close_sign_in);
+        tvForgotPassword = view.findViewById(R.id.tv_forgot_password);
 
         iconError = getResources().getDrawable(R.drawable.ic_round_error_16dp);
         iconError.setBounds(new Rect(0, 0, iconError.getIntrinsicWidth(), iconError.getIntrinsicHeight()));
@@ -99,25 +101,27 @@ public class SignInFragment extends Fragment {
 
         btnClose.setOnClickListener(v -> mListener.onClose());
 
+        tvForgotPassword.setOnClickListener(v -> mListener.onClickForgotPassword());
+
         onTextChangeEdtEmail();
         onTextChangeEdtPassword();
 
     }
 
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onClickDontHaveAccount(uri);
-//        }
-//    }
+    public void onButtonPressed(Uri uri) {
+        if (mListener != null) {
+            mListener.onClickDontHaveAccount();
+        }
+    }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(Objects.requireNonNull(context));
-        if (context instanceof OnFragmentSignInInteractionListener) {
-            mListener = (OnFragmentSignInInteractionListener) context;
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentSignInInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -149,9 +153,11 @@ public class SignInFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentSignInInteractionListener {
+    public interface OnFragmentInteractionListener {
 
         void onClickDontHaveAccount();
+
+        void onClickForgotPassword();
 
         void onSignIn(String email, String password);
 

@@ -9,6 +9,7 @@ public class Constant {
 
     public static String TAG_SIGN_IN_FRAG = "SignIn";
     public static String TAG_SIGN_UP_FRAG = "SignUp";
+    public static String TAG_FORGOT_PASSWORD_FRAG = "ForgotPassword";
 
     public static String KEY_FULL_NAME = "FullName";
 

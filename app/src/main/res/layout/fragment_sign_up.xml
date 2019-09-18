@@ -84,7 +84,7 @@
         tools:targetApi="o" />
 
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_up"
         style="@style/ButtonRedLong"
         android:layout_marginTop="8dp"

@@ -7,13 +7,13 @@
     android:background="@color/colorPrimary"
     tools:context=".SignInFragment">
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_sign_in"
         style="@style/ButtonRedLong"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:enabled="false"
         android:text="@string/sign_in"
+        android:enabled="false"
         android:textColor="@color/btnTextColorDisable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

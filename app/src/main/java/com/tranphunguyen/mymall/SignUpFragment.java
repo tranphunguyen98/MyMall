@@ -28,7 +28,7 @@ import com.tranphunguyen.mymall.Utils.Constant;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link OnFragmentSignUpInteractionListener} interface
+ * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
  * Use the {@link SignUpFragment#newInstance} factory method to
  * create an instance of this fragment.
@@ -43,7 +43,7 @@ public class SignUpFragment extends Fragment {
 
     private Drawable iconError;
 
-    private OnFragmentSignUpInteractionListener mListener;
+    private OnFragmentInteractionListener mListener;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -111,11 +111,11 @@ public class SignUpFragment extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentSignUpInteractionListener) {
-            mListener = (OnFragmentSignUpInteractionListener) context;
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentSignInInteractionListener");
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -147,7 +147,7 @@ public class SignUpFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentSignUpInteractionListener {
+    public interface OnFragmentInteractionListener {
         void onClickAlreadyHaveAccount();
 
         void onSignUp(String email, String password, String FullName);

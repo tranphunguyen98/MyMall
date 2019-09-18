@@ -21,8 +21,9 @@ import java.util.Map;
 import java.util.Objects;
 
 public class RegisterActivity extends AppCompatActivity implements
-        SignInFragment.OnFragmentSignInInteractionListener,
-        SignUpFragment.OnFragmentSignUpInteractionListener {
+        SignInFragment.OnFragmentInteractionListener,
+        SignUpFragment.OnFragmentInteractionListener,
+        ResetPasswordFragment.OnFragmentInteractionListener {
 
     FrameLayout frameLayout;
 
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
         frameLayout = findViewById(R.id.frame_layout);
 
-        addFragment(new ForgotPasswordFragment());
+        addFragment(SignInFragment.newInstance());
     }
 
     private void addFragment(Fragment fragment) {
@@ -62,6 +63,18 @@ public class RegisterActivity extends AppCompatActivity implements
 
         fragmentTransaction.commit();
 
+    }
+
+    @Override
+    public void onClickForgotPassword() {
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_out_from_left);
+
+        fragmentTransaction.replace(frameLayout.getId(), ResetPasswordFragment.newInstance(), Constant.TAG_FORGOT_PASSWORD_FRAG);
+
+        fragmentTransaction.commit();
     }
 
     @Override
@@ -95,10 +108,7 @@ public class RegisterActivity extends AppCompatActivity implements
     @Override
     public void onClickAlreadyHaveAccount() {
 
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.setCustomAnimations(R.anim.slide_from_left, R.anim.slide_out_from_right);
-        fragmentTransaction.replace(frameLayout.getId(), SignInFragment.newInstance(), Constant.TAG_SIGN_IN_FRAG);
-        fragmentTransaction.commit();
+        jumpToSignInFragment();
 
     }
 
@@ -140,6 +150,13 @@ public class RegisterActivity extends AppCompatActivity implements
 
     }
 
+    @Override
+    public void onClickGoBack() {
+
+        jumpToSignInFragment();
+
+    }
+
     private void jumpToMainActivitiy() {
 
         Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
@@ -150,21 +167,32 @@ public class RegisterActivity extends AppCompatActivity implements
 
     }
 
+    private void jumpToSignInFragment() {
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.slide_from_left, R.anim.slide_out_from_right);
+        fragmentTransaction.replace(frameLayout.getId(), SignInFragment.newInstance(), Constant.TAG_SIGN_IN_FRAG);
+        fragmentTransaction.commit();
+
+    }
+
     private void addDataToFireStore(String collection, Object data) {
 
         firebaseFirestore.collection(collection)
                 .add(data).addOnCompleteListener(task -> {
 
-                    if (!task.isSuccessful()) {
+            if (!task.isSuccessful()) {
 
-                        Utils.makeLongToast(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage());
+                Utils.makeLongToast(RegisterActivity.this, Objects.requireNonNull(task.getException()).getMessage());
 
-                    } else {
-                        Utils.makeLongToast(RegisterActivity.this, "Successful!");
+            } else {
+                Utils.makeLongToast(RegisterActivity.this, "Successful!");
 
-                    }
+            }
 
-                });
+        });
 
     }
+
+
 }
