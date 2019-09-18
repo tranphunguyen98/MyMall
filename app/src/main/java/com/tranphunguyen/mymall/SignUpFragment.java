@@ -23,7 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.tranphunguyen.mymall.Utils.Contanst;
+import com.tranphunguyen.mymall.Utils.Constant;
 
 
 /**
@@ -74,13 +74,7 @@ public class SignUpFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-        alreadyHaveAnAccount = view.findViewById(R.id.tv_already_have_an_account);
-        edtEmail = view.findViewById(R.id.edt_email);
-        edtFullName = view.findViewById(R.id.edt_full_name);
-        edtPassword = view.findViewById(R.id.edt_password);
-        edtComfirmPassword = view.findViewById(R.id.edt_confirm_password);
-        btnSignUp = view.findViewById(R.id.btn_sign_up);
-        prgSignUp = view.findViewById(R.id.prg_sign_up);
+        findView(view);
 
         iconError = getResources().getDrawable(R.drawable.ic_round_error_16dp);
         iconError.setBounds(new Rect(0, 0, iconError.getIntrinsicWidth(), iconError.getIntrinsicHeight()));
@@ -112,7 +106,11 @@ public class SignUpFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-            mListener.onSignUp(edtEmail.getText().toString(),edtPassword.getText().toString());
+                mListener.onSignUp(
+                        edtEmail.getText().toString(),
+                        edtPassword.getText().toString(),
+                        edtFullName.getText().toString()
+                );
 
             }
         });
@@ -167,7 +165,20 @@ public class SignUpFragment extends Fragment {
      */
     public interface OnFragmentSignUpInteractionListener {
         void onClickAlreadyHaveAccount();
-        void onSignUp(String email, String password);
+
+        void onSignUp(String email, String password, String FullName);
+    }
+
+    private void findView(View view) {
+
+        alreadyHaveAnAccount = view.findViewById(R.id.tv_already_have_an_account);
+        edtEmail = view.findViewById(R.id.edt_email);
+        edtFullName = view.findViewById(R.id.edt_full_name);
+        edtPassword = view.findViewById(R.id.edt_password);
+        edtComfirmPassword = view.findViewById(R.id.edt_confirm_password);
+        btnSignUp = view.findViewById(R.id.btn_sign_up);
+        prgSignUp = view.findViewById(R.id.prg_sign_up);
+
     }
 
     private void setErrorIcon() {
@@ -219,7 +230,7 @@ public class SignUpFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Contanst.REGEX_EMAIL)) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Constant.REGEX_EMAIL)) {
 
                     edtEmail.setError("Invalid Email", iconError);
 
@@ -260,7 +271,7 @@ public class SignUpFragment extends Fragment {
                     disableButtonSignUp();
 
                 } else {
-                    edtEmail.setError(null);
+                    edtFullName.setError(null);
                     if (isValidInput()) {
 
                         enableButtonSignUp();

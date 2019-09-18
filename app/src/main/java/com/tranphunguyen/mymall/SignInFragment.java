@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.tranphunguyen.mymall.Utils.Contanst;
+import com.tranphunguyen.mymall.Utils.Constant;
 
 
 /**
@@ -205,7 +205,7 @@ public class SignInFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Contanst.REGEX_EMAIL)) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Constant.REGEX_EMAIL)) {
 
                     edtEmail.setError("Invalid Email", iconError);
 
