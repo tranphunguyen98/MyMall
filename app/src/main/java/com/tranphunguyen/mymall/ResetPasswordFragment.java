@@ -7,11 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.material.button.MaterialButton;
+import com.tranphunguyen.mymall.Utils.Constant;
 
 
 /**
@@ -26,7 +34,10 @@ public class ResetPasswordFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    MaterialButton btnGoBack;
+    private MaterialButton btnGoBack, btnResetPassword;
+    private ProgressBar prgLinearSendEmail, prgSendEmail;
+    private TextView tvSentEmailSuccessful;
+    private EditText edtEmail;
 
     public ResetPasswordFragment() {
         // Required empty public constructor
@@ -55,6 +66,11 @@ public class ResetPasswordFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_reset_password, container, false);
 
         btnGoBack = view.findViewById(R.id.btn_go_back);
+        btnResetPassword = view.findViewById(R.id.btn_reset_password);
+        prgLinearSendEmail = view.findViewById(R.id.prg_linear_reset_password);
+        prgSendEmail = view.findViewById(R.id.prg_reset_password);
+        tvSentEmailSuccessful = view.findViewById(R.id.tv_sent_email_successful);
+        edtEmail = view.findViewById(R.id.edt_email_forgot_password);
 
         return view;
 
@@ -64,7 +80,11 @@ public class ResetPasswordFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        onTextChangeEdtEmail();
+
         btnGoBack.setOnClickListener(v -> mListener.onClickGoBack());
+        btnResetPassword.setOnClickListener(v -> mListener.resetPassword(edtEmail.getText().toString()));
+
     }
 
     @Override
@@ -96,5 +116,82 @@ public class ResetPasswordFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void onClickGoBack();
+
+        void resetPassword(String email);
+    }
+
+    void onLoading() {
+
+        btnResetPassword.setText("");
+        prgLinearSendEmail.setProgress(50);
+        prgSendEmail.setVisibility(View.VISIBLE);
+        tvSentEmailSuccessful.setVisibility(View.INVISIBLE);
+
+    }
+
+    void onSentEmailSuccessful() {
+
+        btnResetPassword.setText(getResources().getText(R.string.reset_password));
+        prgLinearSendEmail.setProgress(100);
+        prgSendEmail.setVisibility(View.GONE);
+        tvSentEmailSuccessful.setVisibility(View.VISIBLE);
+
+    }
+
+    private void onTextChangeEdtEmail() {
+
+        edtEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Constant.REGEX_EMAIL)) {
+
+                    edtEmail.setError("Invalid Email");
+
+                    disableButtonResetPassword();
+
+                } else {
+                    edtEmail.setError(null);
+                    if (isValidInput()) {
+
+                        enableButtonResetPassword();
+
+                    }
+
+                }
+            }
+        });
+
+
+    }
+
+    private boolean isValidInput() {
+
+        Log.d("ErrorTest", "mail" + edtEmail.getError());
+
+        return edtEmail.getError() == null;
+    }
+
+    private void disableButtonResetPassword() {
+
+        btnResetPassword.setEnabled(false);
+        btnResetPassword.setTextColor(getResources().getColor(R.color.btnTextColorDisable));
+
+    }
+
+    private void enableButtonResetPassword() {
+
+        btnResetPassword.setEnabled(true);
+        btnResetPassword.setTextColor(getResources().getColor(R.color.colorAccent));
+
     }
 }

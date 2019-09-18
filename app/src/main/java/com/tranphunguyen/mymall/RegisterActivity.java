@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
         fragmentTransaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_out_from_left);
 
-        fragmentTransaction.replace(frameLayout.getId(), ResetPasswordFragment.newInstance(), Constant.TAG_FORGOT_PASSWORD_FRAG);
+        fragmentTransaction.replace(frameLayout.getId(), ResetPasswordFragment.newInstance(), Constant.TAG_RESET_PASSWORD_FRAG);
 
         fragmentTransaction.commit();
     }
@@ -154,6 +154,26 @@ public class RegisterActivity extends AppCompatActivity implements
     public void onClickGoBack() {
 
         jumpToSignInFragment();
+
+    }
+
+    @Override
+    public void resetPassword(String email) {
+        final ResetPasswordFragment resetFragment = (ResetPasswordFragment) fragmentManager.findFragmentByTag(Constant.TAG_RESET_PASSWORD_FRAG);
+
+        assert resetFragment != null;
+        resetFragment.onLoading();
+
+        firebaseAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+
+                        resetFragment.onSentEmailSuccessful();
+
+                    }
+
+                }
+                );
 
     }
 
