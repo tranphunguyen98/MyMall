@@ -5,6 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="forgot_password_italic"><u>Forgot Password?</u></string>
     <string name="forgot_password"><u>Forgot Password?</u></string>
     <string name="sign_in">Sign In</string>
     <string name="logo">logo</string>
@@ -15,4 +16,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="already_have_an_account"><u>Already have an account? Sign in!</u></string>
     <string name="comfirm_password">Comfirm Password</string>
+    <string name="sub_forgot_password">Don\'t worry we just need your \n registered email address and its done!</string>
+    <string name="go_back">Go Back</string>
+    <string name="reset_password">Reset Password</string>
 </resources>

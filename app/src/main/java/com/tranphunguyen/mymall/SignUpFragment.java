@@ -99,11 +99,7 @@ public class SignUpFragment extends Fragment {
                 edtFullName.getText().toString()
         ));
 
-        btnClose.setOnClickListener( v -> {
-
-            mListener.onClose();
-
-        });
+        btnClose.setOnClickListener(v -> mListener.onClose());
     }
 
 //    public void onButtonPressed(Uri uri) {

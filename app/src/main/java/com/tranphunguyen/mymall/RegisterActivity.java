@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
         frameLayout = findViewById(R.id.frame_layout);
 
-        addFragment(SignInFragment.newInstance());
+        addFragment(new ForgotPasswordFragment());
     }
 
     private void addFragment(Fragment fragment) {
