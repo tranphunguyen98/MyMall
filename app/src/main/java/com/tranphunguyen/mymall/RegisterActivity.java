@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
         fragmentTransaction.setCustomAnimations(R.anim.slide_from_right,R.anim.slide_out_from_left);
 
-        fragmentTransaction.replace(frameLayout.getId(),new SignUpFragment());
+        fragmentTransaction.replace(frameLayout.getId(),SignUpFragment.newInstance());
 
         fragmentTransaction.commit();
 

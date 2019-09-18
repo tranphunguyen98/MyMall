@@ -23,10 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.Objects;
-
-import io.opencensus.internal.StringUtils;
+import com.tranphunguyen.mymall.Utils.Contanst;
 
 
 /**
@@ -46,14 +43,6 @@ public class SignUpFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
 
     private Drawable iconError;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     private OnFragmentSignUpInteractionListener mListener;
 
@@ -65,27 +54,16 @@ public class SignUpFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment SignUpFragment.
      */
-    // TODO: Rename and change types and number of parameters
-    public static SignUpFragment newInstance(String param1, String param2) {
-        SignUpFragment fragment = new SignUpFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    static SignUpFragment newInstance() {
+
+        return new SignUpFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
 
         firebaseAuth = FirebaseAuth.getInstance();
     }
@@ -124,147 +102,10 @@ public class SignUpFragment extends Fragment {
 
         setErrorIcon();
 
-        edtEmail.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
-
-                    edtEmail.setError("Invalid Email", iconError);
-
-                    disableButtonSignIn();
-
-                } else {
-
-                    if (isValidInput()) {
-
-                        enableButtonSignIn();
-
-                    }
-
-                }
-            }
-        });
-
-        edtFullName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
-
-                    edtFullName.setError("Invalid Name", iconError);
-
-                    disableButtonSignIn();
-
-                } else {
-
-                    if (isValidInput()) {
-
-                        enableButtonSignIn();
-
-                    }
-
-                }
-            }
-        });
-
-        edtPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
-
-                    edtPassword.setError("Invalid password (< 6 character)", iconError);
-
-                    disableButtonSignIn();
-
-                } else if (!TextUtils.isEmpty(edtComfirmPassword.getText()) && !s.toString().equals(edtComfirmPassword.getText().toString())) {
-
-                    edtPassword.setError("Please enter same password", iconError);
-
-                    disableButtonSignIn();
-
-                } else {
-                    edtPassword.setError(null);
-                    if (!TextUtils.isEmpty(edtComfirmPassword.getText())) {
-
-                        edtComfirmPassword.setError(null);
-
-                    }
-                    if (isValidInput()) {
-
-                        enableButtonSignIn();
-
-                    }
-
-                }
-            }
-        });
-
-        edtComfirmPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
-
-                    edtComfirmPassword.setError("Invalid password (< 6 character)", iconError);
-
-                    disableButtonSignIn();
-
-                } else if (!s.toString().equals(edtPassword.getText().toString())) {
-
-                    edtComfirmPassword.setError("Please enter same password", iconError);
-
-                    disableButtonSignIn();
-
-                } else {
-                    edtPassword.setError(null);
-                    edtComfirmPassword.setError(null);
-                    if (isValidInput()) {
-
-                        enableButtonSignIn();
-
-                    }
-
-                }
-            }
-        });
+        onTextChangeEdtEmail();
+        onTextChangeEdtFullName();
+        onTextChangeEdtPassword();
+        onTextChangeEdtComfirmPassword();
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -339,17 +180,173 @@ public class SignUpFragment extends Fragment {
                 edtComfirmPassword.getError() == null;
     }
 
-    private void disableButtonSignIn() {
+    private void disableButtonSignUp() {
 
         btnSignUp.setEnabled(false);
         btnSignUp.setTextColor(getResources().getColor(R.color.btnTextColorDisable));
 
     }
 
-    private void enableButtonSignIn() {
+    private void enableButtonSignUp() {
 
         btnSignUp.setEnabled(true);
         btnSignUp.setTextColor(getResources().getColor(R.color.colorAccent));
+
+    }
+
+    private void onTextChangeEdtEmail() {
+
+        edtEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Contanst.REGEX_EMAIL)) {
+
+                    edtEmail.setError("Invalid Email", iconError);
+
+                    disableButtonSignUp();
+
+                } else {
+                    edtEmail.setError(null);
+                    if (isValidInput()) {
+
+                        enableButtonSignUp();
+
+                    }
+
+                }
+            }
+        });
+
+    }
+
+    private void onTextChangeEdtFullName() {
+        edtFullName.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
+
+                    edtFullName.setError("Invalid Name", iconError);
+
+                    disableButtonSignUp();
+
+                } else {
+                    edtEmail.setError(null);
+                    if (isValidInput()) {
+
+                        enableButtonSignUp();
+
+                    }
+
+                }
+            }
+        });
+    }
+
+    private void onTextChangeEdtPassword() {
+
+        edtPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
+
+                    edtPassword.setError("Invalid password (< 6 character)", iconError);
+
+                    disableButtonSignUp();
+
+                } else if (!TextUtils.isEmpty(edtComfirmPassword.getText()) && !s.toString().equals(edtComfirmPassword.getText().toString())) {
+
+                    edtPassword.setError("Please enter same password", iconError);
+
+                    disableButtonSignUp();
+
+                } else {
+                    edtPassword.setError(null);
+                    if (!TextUtils.isEmpty(edtComfirmPassword.getText())) {
+
+                        edtComfirmPassword.setError(null);
+
+                    }
+                    if (isValidInput()) {
+
+                        enableButtonSignUp();
+
+                    }
+
+                }
+            }
+        });
+
+    }
+
+    private void onTextChangeEdtComfirmPassword() {
+
+        edtComfirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
+
+                    edtComfirmPassword.setError("Invalid password (< 6 character)", iconError);
+
+                    disableButtonSignUp();
+
+                } else if (!s.toString().equals(edtPassword.getText().toString())) {
+
+                    edtComfirmPassword.setError("Please enter same password", iconError);
+
+                    disableButtonSignUp();
+
+                } else {
+                    edtPassword.setError(null);
+                    edtComfirmPassword.setError(null);
+                    if (isValidInput()) {
+
+                        enableButtonSignUp();
+
+                    }
+
+                }
+            }
+        });
 
     }
 }

@@ -1,15 +1,27 @@
 package com.tranphunguyen.mymall;
 
 import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.tranphunguyen.mymall.Utils.Contanst;
 
 
 /**
@@ -22,16 +34,13 @@ import android.widget.TextView;
  */
 public class SignInFragment extends Fragment {
 
-
     private TextView dontHaveAccount;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText edtEmail, edtPassword;
+
+    private Button btnSignIn;
+
+    private Drawable iconError;
 
     private OnFragmentSignInInteractionListener mListener;
 
@@ -49,21 +58,12 @@ public class SignInFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static SignInFragment newInstance(String param1, String param2) {
-        SignInFragment fragment = new SignInFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        return new SignInFragment();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -73,6 +73,13 @@ public class SignInFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
         dontHaveAccount = view.findViewById(R.id.tv_dont_have_account);
+
+        edtEmail = view.findViewById(R.id.edt_email);
+        edtPassword = view.findViewById(R.id.edt_password);
+        btnSignIn = view.findViewById(R.id.btn_sign_in);
+
+        iconError = getResources().getDrawable(R.drawable.ic_round_error_16dp);
+        iconError.setBounds(new Rect(0, 0, iconError.getIntrinsicWidth(), iconError.getIntrinsicHeight()));
 
         return view;
     }
@@ -89,6 +96,10 @@ public class SignInFragment extends Fragment {
 
             }
         });
+
+        onTextChangeEdtEmail();
+        onTextChangeEdtPassword();
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -129,4 +140,100 @@ public class SignInFragment extends Fragment {
 
         void onClickDontHaveAccount();
     }
+
+
+    private boolean isValidInput() {
+
+        Log.d("ErrorTest", "mail" + edtEmail.getError());
+        Log.d("ErrorTest", "edtPassword" + edtPassword.getError());
+
+        return edtEmail.getError() == null &&
+                edtPassword.getError() == null;
+    }
+
+    private void disableButtonSignIn() {
+
+        btnSignIn.setEnabled(false);
+        btnSignIn.setTextColor(getResources().getColor(R.color.btnTextColorDisable));
+
+    }
+
+    private void enableButtonSignIn() {
+
+        btnSignIn.setEnabled(true);
+        btnSignIn.setTextColor(getResources().getColor(R.color.colorAccent));
+
+    }
+
+    private void onTextChangeEdtEmail() {
+
+        edtEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6 || !s.toString().matches(Contanst.REGEX_EMAIL)) {
+
+                    edtEmail.setError("Invalid Email", iconError);
+
+                    disableButtonSignIn();
+
+                } else {
+                    edtEmail.setError(null);
+                    if (isValidInput()) {
+
+                        enableButtonSignIn();
+
+                    }
+
+                }
+            }
+        });
+
+    }
+
+    private void onTextChangeEdtPassword() {
+
+        edtPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (TextUtils.isEmpty(s) || s.toString().length() < 6) {
+
+                    edtPassword.setError("Invalid password (< 6 character)", iconError);
+
+                    disableButtonSignIn();
+
+                } else {
+                    edtPassword.setError(null);
+
+                    if (isValidInput()) {
+
+                        enableButtonSignIn();
+
+                    }
+
+                }
+            }
+        });
+
+    }
+
 }
