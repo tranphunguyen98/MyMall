@@ -33,4 +33,30 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+
+    <string-array name="list_link_icon_category">
+        <item>home_icon</item>
+        <item>electronic_icon</item>
+        <item>appliance_icon</item>
+        <item>furniture_icon</item>
+        <item>fashion_icon</item>
+        <item>fashion_icon</item>
+        <item>fashion_icon</item>
+        <item>fashion_icon</item>
+        <item>fashion_icon</item>
+        <item>fashion_icon</item>
+    </string-array>
+
+    <string-array name="list_name_icon_category">
+        <item>Home</item>
+        <item>Electronics</item>
+        <item>Appliances</item>
+        <item>Furniture</item>
+        <item>Fashion</item>
+        <item>Toys</item>
+        <item>Sports</item>
+        <item>Wall Arts</item>
+        <item>Books</item>
+        <item>Shoes</item>
+    </string-array>
 </resources>
