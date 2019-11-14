@@ -45,7 +45,7 @@ public class SplashScreen extends AppCompatActivity {
 
     private void jumpToMainActivity() {
 
-        Intent mainIntent = new Intent(this, MainActivity.class);
+        Intent mainIntent = new Intent(this, HomeActivity.class);
 
         startActivity(mainIntent);
 
@@ -54,15 +54,16 @@ public class SplashScreen extends AppCompatActivity {
 
     private void checkCurrentUser() {
 
-        if(firebaseAuth.getCurrentUser() == null) {
-
-            jumpToRegisterActivity();
-
-        } else {
-
-            jumpToMainActivity();
-
-        }
+        jumpToMainActivity();
+//        if(firebaseAuth.getCurrentUser() == null) {
+//
+//            jumpToRegisterActivity();
+//
+//        } else {
+//
+//            jumpToMainActivity();
+//
+//        }
 
     }
 

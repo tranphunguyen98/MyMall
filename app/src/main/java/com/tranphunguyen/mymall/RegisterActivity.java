@@ -176,7 +176,7 @@ public class RegisterActivity extends AppCompatActivity implements
 
     private void jumpToMainActivitiy() {
 
-        Intent mainIntent = new Intent(RegisterActivity.this, MainActivity.class);
+        Intent mainIntent = new Intent(RegisterActivity.this, HomeActivity.class);
 
         startActivity(mainIntent);
 
