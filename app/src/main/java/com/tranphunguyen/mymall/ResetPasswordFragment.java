@@ -116,7 +116,6 @@ public class ResetPasswordFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void onClickGoBack();
-
         void resetPassword(String email);
     }
 
@@ -194,4 +193,6 @@ public class ResetPasswordFragment extends Fragment {
         btnResetPassword.setTextColor(getResources().getColor(R.color.colorAccent));
 
     }
+
+
 }

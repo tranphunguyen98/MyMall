@@ -164,7 +164,6 @@ public class SignInFragment extends Fragment {
         void onClose();
     }
 
-
     private boolean isValidInput() {
 
         Log.d("ErrorTest", "mail" + edtEmail.getError());

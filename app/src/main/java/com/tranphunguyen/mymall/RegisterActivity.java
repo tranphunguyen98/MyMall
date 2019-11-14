@@ -56,11 +56,8 @@ public class RegisterActivity extends AppCompatActivity implements
     public void onClickDontHaveAccount() {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         fragmentTransaction.setCustomAnimations(R.anim.slide_from_right, R.anim.slide_out_from_left);
-
         fragmentTransaction.replace(frameLayout.getId(), SignUpFragment.newInstance(), Constant.TAG_SIGN_UP_FRAG);
-
         fragmentTransaction.commit();
 
     }
@@ -127,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity implements
                         Map<String, String> userData = new HashMap<>();
                         userData.put(Constant.KEY_FULL_NAME, fullName);
 
-                        addDataToFireStore(Constant.USER_COLECTION, userData);
+                        addDataToFireStore(Constant.USER_COLlECTION, userData);
                         jumpToMainActivitiy();
 
                     } else {
@@ -214,5 +211,13 @@ public class RegisterActivity extends AppCompatActivity implements
 
     }
 
-
+        @Override
+    public void onBackPressed() {
+        SignInFragment signInFragment = (SignInFragment) fragmentManager.findFragmentByTag(Constant.TAG_SIGN_IN_FRAG);
+        if(signInFragment != null && signInFragment.isVisible()) {
+            super.onBackPressed();
+            return;
+        }
+        jumpToSignInFragment();
+    }
 }

@@ -13,5 +13,5 @@ public class Constant {
 
     public static String KEY_FULL_NAME = "FullName";
 
-    public static String USER_COLECTION = "USERS";
+    public static String USER_COLlECTION = "USERS";
 }
