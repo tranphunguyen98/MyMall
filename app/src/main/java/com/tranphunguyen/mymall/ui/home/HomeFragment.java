@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        bannerSlider.setPageMargin(32);
+        bannerSlider.setPageMargin(20);
         bannerSlider.setAdapter(sliderAdapter);
 
         startBannerSlider();
@@ -118,7 +118,7 @@ public class HomeFragment extends Fragment {
             public void run() {
                 handler.post(update);
             }
-        },1000,1000);
+        },2000,2000);
     }
 
 }

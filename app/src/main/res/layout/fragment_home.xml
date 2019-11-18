@@ -36,7 +36,7 @@
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:clipToPadding="false"
-        android:padding="16dp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

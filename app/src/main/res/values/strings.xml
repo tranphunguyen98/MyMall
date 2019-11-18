@@ -40,11 +40,11 @@
         <item>appliance_icon</item>
         <item>furniture_icon</item>
         <item>fashion_icon</item>
-<!--        <item>fashion_icon</item>-->
-<!--        <item>fashion_icon</item>-->
-<!--        <item>fashion_icon</item>-->
-<!--        <item>fashion_icon</item>-->
-<!--        <item>fashion_icon</item>-->
+        <item>electronic_icon</item>
+        <item>appliance_icon</item>
+        <item>furniture_icon</item>
+        <item>fashion_icon</item>
+        <item>electronic_icon</item>
     </string-array>
 
 
@@ -54,11 +54,11 @@
         <item>Appliances</item>
         <item>Furniture</item>
         <item>Fashion</item>
-        <!--        <item>Toys</item>-->
-        <!--        <item>Sports</item>-->
-        <!--        <item>Wall Arts</item>-->
-        <!--        <item>Books</item>-->
-        <!--        <item>Shoes</item>-->
+        <item>Toys</item>
+        <item>Sports</item>
+        <item>Wall Arts</item>
+        <item>Books</item>
+        <item>Shoes</item>
     </string-array>
 
     <string-array name="list_color_banner_slide">
@@ -67,11 +67,11 @@
         <item>#A01177</item>
         <item>#FF5722</item>
         <item>#E91E63</item>
-        <!--        <item>Toys</item>-->
-        <!--        <item>Sports</item>-->
-        <!--        <item>Wall Arts</item>-->
-        <!--        <item>Books</item>-->
-        <!--        <item>Shoes</item>-->
+        <item>#0069A5</item>
+        <item>#006905</item>
+        <item>#A01177</item>
+        <item>#FF5722</item>
+        <item>#E91E63</item>
     </string-array>
 
     <string-array name="list_img_product">
@@ -80,10 +80,10 @@
         <item>img_phone_3</item>
         <item>img_phone_4</item>
         <item>img_phone_1</item>
-        <!--        <item>Toys</item>-->
-        <!--        <item>Sports</item>-->
-        <!--        <item>Wall Arts</item>-->
-        <!--        <item>Books</item>-->
-        <!--        <item>Shoes</item>-->
+        <item>img_phone_2</item>
+        <item>img_phone_3</item>
+        <item>img_phone_4</item>
+        <item>img_phone_1</item>
+        <item>img_phone_2</item>
     </string-array>
 </resources>
