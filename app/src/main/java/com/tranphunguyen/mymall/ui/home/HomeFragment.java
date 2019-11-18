@@ -5,15 +5,18 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.tranphunguyen.mymall.R;
 import com.tranphunguyen.mymall.adapter.CategoryAdapter;
+import com.tranphunguyen.mymall.adapter.GridProductAdapter;
 import com.tranphunguyen.mymall.adapter.HorizotalProductAdapter;
 import com.tranphunguyen.mymall.adapter.SliderAdapter;
 import com.tranphunguyen.mymall.model.CategoryModel;
@@ -30,6 +33,7 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView rcCategory;
     private RecyclerView rcProduct;
+    private RecyclerView rcGridProduct;
 
     private ViewPager bannerSlider;
     private int currentPage = 0;
@@ -42,6 +46,7 @@ public class HomeFragment extends Fragment {
 
         rcCategory = view.findViewById(R.id.rc_category);
         rcProduct = view.findViewById(R.id.rc_horizontal_product);
+        rcGridProduct = view.findViewById(R.id.rc_grid_product);
         bannerSlider = view.findViewById(R.id.view_pager_banner_slider );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -50,8 +55,12 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManagerProduct = new LinearLayoutManager(getActivity());
         layoutManagerProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
 
+        GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(getActivity(),2);
+        gridLayoutManagerProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
+
         rcCategory.setLayoutManager(layoutManager);
         rcProduct.setLayoutManager(layoutManagerProduct);
+        rcGridProduct.setLayoutManager(gridLayoutManagerProduct);
 
         String[] listCategoryName = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_name_icon_category);
         String[] listCategoryLink = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_link_icon_category);
@@ -77,6 +86,9 @@ public class HomeFragment extends Fragment {
 
         HorizotalProductAdapter productAdapter = new HorizotalProductAdapter(dataProduct);
         rcProduct.setAdapter(productAdapter);
+
+        GridProductAdapter gridProductAdapter = new GridProductAdapter(dataProduct);
+        rcGridProduct.setAdapter(gridProductAdapter);
 
         SliderAdapter sliderAdapter = new SliderAdapter(dataSlider);
         bannerSlider.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
