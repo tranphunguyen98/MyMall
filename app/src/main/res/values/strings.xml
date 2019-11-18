@@ -40,12 +40,13 @@
         <item>appliance_icon</item>
         <item>furniture_icon</item>
         <item>fashion_icon</item>
-        <item>fashion_icon</item>
-        <item>fashion_icon</item>
-        <item>fashion_icon</item>
-        <item>fashion_icon</item>
-        <item>fashion_icon</item>
+<!--        <item>fashion_icon</item>-->
+<!--        <item>fashion_icon</item>-->
+<!--        <item>fashion_icon</item>-->
+<!--        <item>fashion_icon</item>-->
+<!--        <item>fashion_icon</item>-->
     </string-array>
+
 
     <string-array name="list_name_icon_category">
         <item>Home</item>
@@ -53,10 +54,23 @@
         <item>Appliances</item>
         <item>Furniture</item>
         <item>Fashion</item>
-        <item>Toys</item>
-        <item>Sports</item>
-        <item>Wall Arts</item>
-        <item>Books</item>
-        <item>Shoes</item>
+        <!--        <item>Toys</item>-->
+        <!--        <item>Sports</item>-->
+        <!--        <item>Wall Arts</item>-->
+        <!--        <item>Books</item>-->
+        <!--        <item>Shoes</item>-->
+    </string-array>
+
+    <string-array name="list_color_banner_slide">
+        <item>#0069A5</item>
+        <item>#006905</item>
+        <item>#A01177</item>
+        <item>#FF5722</item>
+        <item>#E91E63</item>
+        <!--        <item>Toys</item>-->
+        <!--        <item>Sports</item>-->
+        <!--        <item>Wall Arts</item>-->
+        <!--        <item>Books</item>-->
+        <!--        <item>Shoes</item>-->
     </string-array>
 </resources>
