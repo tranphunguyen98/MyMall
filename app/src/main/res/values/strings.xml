@@ -73,4 +73,17 @@
         <!--        <item>Books</item>-->
         <!--        <item>Shoes</item>-->
     </string-array>
+
+    <string-array name="list_img_product">
+        <item>img_phone_1</item>
+        <item>img_phone_2</item>
+        <item>img_phone_3</item>
+        <item>img_phone_4</item>
+        <item>img_phone_1</item>
+        <!--        <item>Toys</item>-->
+        <!--        <item>Sports</item>-->
+        <!--        <item>Wall Arts</item>-->
+        <!--        <item>Books</item>-->
+        <!--        <item>Shoes</item>-->
+    </string-array>
 </resources>

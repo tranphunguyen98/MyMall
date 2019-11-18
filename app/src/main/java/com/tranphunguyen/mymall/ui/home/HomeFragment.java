@@ -2,25 +2,22 @@ package com.tranphunguyen.mymall.ui.home;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.tranphunguyen.mymall.R;
 import com.tranphunguyen.mymall.adapter.CategoryAdapter;
+import com.tranphunguyen.mymall.adapter.HorizotalProductAdapter;
 import com.tranphunguyen.mymall.adapter.SliderAdapter;
 import com.tranphunguyen.mymall.model.CategoryModel;
+import com.tranphunguyen.mymall.model.ProductModel;
 import com.tranphunguyen.mymall.model.SliderModel;
 
 import java.util.ArrayList;
@@ -31,26 +28,35 @@ import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
-    private RecyclerView recyclerView;
+    private RecyclerView rcCategory;
+    private RecyclerView rcProduct;
+
     private ViewPager bannerSlider;
     private int currentPage = 0;
     private Timer timer;
     List<SliderModel> dataSlider = new ArrayList<>();
+    List<ProductModel> dataProduct = new ArrayList<>();
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        recyclerView = view.findViewById(R.id.rc_category);
+        rcCategory = view.findViewById(R.id.rc_category);
+        rcProduct = view.findViewById(R.id.rc_horizontal_product);
         bannerSlider = view.findViewById(R.id.view_pager_banner_slider );
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-        recyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManagerProduct = new LinearLayoutManager(getActivity());
+        layoutManagerProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
+
+        rcCategory.setLayoutManager(layoutManager);
+        rcProduct.setLayoutManager(layoutManagerProduct);
 
         String[] listCategoryName = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_name_icon_category);
         String[] listCategoryLink = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_link_icon_category);
         String[] listColorBannerSlide = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_color_banner_slide);
+        String[] listImgProduct = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_img_product);
 
         List<CategoryModel> data = new ArrayList<>();
 
@@ -58,14 +64,19 @@ public class HomeFragment extends Fragment {
         for(int i = 0; i < listCategoryName.length; i++ ){
             CategoryModel model = new CategoryModel(listCategoryLink[i],listCategoryName[i]);
             SliderModel sliderModel = new SliderModel(listCategoryLink[i], listColorBannerSlide[i]);
+            ProductModel productModel = new ProductModel(listImgProduct[i],listCategoryName[i],listCategoryName[i],500.0f);
 
             dataSlider.add(sliderModel);
+            dataProduct.add(productModel);
             data.add(model);
         }
 
         CategoryAdapter adapter = new CategoryAdapter(data);
 
-        recyclerView.setAdapter(adapter);
+        rcCategory.setAdapter(adapter);
+
+        HorizotalProductAdapter productAdapter = new HorizotalProductAdapter(dataProduct);
+        rcProduct.setAdapter(productAdapter);
 
         SliderAdapter sliderAdapter = new SliderAdapter(dataSlider);
         bannerSlider.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
