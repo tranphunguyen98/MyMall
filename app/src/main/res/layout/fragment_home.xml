@@ -22,32 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <include
-                layout="@layout/layout_horizontal_product"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_home_pager"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
-                android:padding="16dp" />
-
-            <include
-                layout="@layout/layout_grid_product"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="12dp"
-                android:layout_marginBottom="16dp"
-                android:padding="16dp" />
-
-            <androidx.viewpager.widget.ViewPager
-                android:id="@+id/view_pager_banner_slider"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:clipToPadding="false"
-                android:padding="8dp" />
-
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </ScrollView>

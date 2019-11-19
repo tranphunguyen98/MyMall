@@ -17,9 +17,11 @@ import androidx.viewpager.widget.ViewPager;
 import com.tranphunguyen.mymall.R;
 import com.tranphunguyen.mymall.adapter.CategoryAdapter;
 import com.tranphunguyen.mymall.adapter.GridProductAdapter;
+import com.tranphunguyen.mymall.adapter.HomePageAdapter;
 import com.tranphunguyen.mymall.adapter.HorizotalProductAdapter;
 import com.tranphunguyen.mymall.adapter.SliderAdapter;
 import com.tranphunguyen.mymall.model.CategoryModel;
+import com.tranphunguyen.mymall.model.HomePageModel;
 import com.tranphunguyen.mymall.model.ProductModel;
 import com.tranphunguyen.mymall.model.SliderModel;
 
@@ -31,36 +33,20 @@ import java.util.TimerTask;
 
 public class HomeFragment extends Fragment {
 
+    private RecyclerView rcHomePage;
     private RecyclerView rcCategory;
-    private RecyclerView rcProduct;
-    private RecyclerView rcGridProduct;
+//    private RecyclerView rcGridProduct;
+//
 
-    private ViewPager bannerSlider;
-    private int currentPage = 0;
-    private Timer timer;
-    List<SliderModel> dataSlider = new ArrayList<>();
-    List<ProductModel> dataProduct = new ArrayList<>();
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+       View view = inflater.inflate(R.layout.fragment_home, container, false);
+//
+        rcHomePage = view.findViewById(R.id.rc_home_pager);
         rcCategory = view.findViewById(R.id.rc_category);
-        rcProduct = view.findViewById(R.id.rc_horizontal_product);
-        rcGridProduct = view.findViewById(R.id.rc_grid_product);
-        bannerSlider = view.findViewById(R.id.view_pager_banner_slider );
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        LinearLayoutManager layoutManagerProduct = new LinearLayoutManager(getActivity());
-        layoutManagerProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        GridLayoutManager gridLayoutManagerProduct = new GridLayoutManager(getActivity(),2);
-        gridLayoutManagerProduct.setOrientation(LinearLayoutManager.HORIZONTAL);
-
-        rcCategory.setLayoutManager(layoutManager);
-        rcProduct.setLayoutManager(layoutManagerProduct);
-        rcGridProduct.setLayoutManager(gridLayoutManagerProduct);
+        List<HomePageModel> listHomePageModel = new ArrayList<>();
 
         String[] listCategoryName = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_name_icon_category);
         String[] listCategoryLink = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_link_icon_category);
@@ -68,7 +54,8 @@ public class HomeFragment extends Fragment {
         String[] listImgProduct = Objects.requireNonNull(getActivity()).getResources().getStringArray(R.array.list_img_product);
 
         List<CategoryModel> data = new ArrayList<>();
-
+        List<SliderModel> dataSlider = new ArrayList<>();
+        List<ProductModel> dataProduct = new ArrayList<>();
 
         for(int i = 0; i < listCategoryName.length; i++ ){
             CategoryModel model = new CategoryModel(listCategoryLink[i],listCategoryName[i]);
@@ -80,57 +67,31 @@ public class HomeFragment extends Fragment {
             data.add(model);
         }
 
-        CategoryAdapter adapter = new CategoryAdapter(data);
+        listHomePageModel.add(new HomePageModel(0,dataSlider));
+        listHomePageModel.add(new HomePageModel(1,"Deals of the day1",dataProduct));
+        listHomePageModel.add(new HomePageModel(2,"Deals of the day2",dataProduct));
+        listHomePageModel.add(new HomePageModel(0,dataSlider));
+        listHomePageModel.add(new HomePageModel(1,"Deals of the day3",dataProduct));
+        listHomePageModel.add(new HomePageModel(2,"Deals of the day4",dataProduct));
+        listHomePageModel.add(new HomePageModel(0,dataSlider));
+        listHomePageModel.add(new HomePageModel(1,"Deals of the day5",dataProduct));
 
+        LinearLayoutManager layoutManagerCategory = new LinearLayoutManager(getContext());
+        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rcCategory.setLayoutManager(layoutManagerCategory);
+        CategoryAdapter adapter = new CategoryAdapter(data);
         rcCategory.setAdapter(adapter);
 
-        HorizotalProductAdapter productAdapter = new HorizotalProductAdapter(dataProduct);
-        rcProduct.setAdapter(productAdapter);
+        LinearLayoutManager layoutManagerHomePage = new LinearLayoutManager(getContext());
+        layoutManagerCategory.setOrientation(LinearLayoutManager.HORIZONTAL);
+        rcHomePage.setLayoutManager(layoutManagerHomePage);
+        HomePageAdapter homePageAdapter = new HomePageAdapter(listHomePageModel);
+        rcHomePage.setAdapter(homePageAdapter);
 
-        GridProductAdapter gridProductAdapter = new GridProductAdapter(dataProduct);
-        rcGridProduct.setAdapter(gridProductAdapter);
-
-        SliderAdapter sliderAdapter = new SliderAdapter(dataSlider);
-        bannerSlider.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                currentPage = position;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-        bannerSlider.setPageMargin(20);
-        bannerSlider.setAdapter(sliderAdapter);
-
-        startBannerSlider();
 
         return view;
     }
 
-    private void startBannerSlider() {
-        Handler handler = new Handler();
-        Runnable update = () -> {
-            if(currentPage >= dataSlider.size()) {
-                currentPage = 0;
-            }
-            bannerSlider.setCurrentItem(currentPage++,true);
-        };
 
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        },2000,2000);
-    }
 
 }

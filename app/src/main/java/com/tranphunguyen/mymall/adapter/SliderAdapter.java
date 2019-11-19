@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.tranphunguyen.mymall.R;
 import com.tranphunguyen.mymall.model.SliderModel;
@@ -38,7 +37,7 @@ public class SliderAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.slider_banner,container,false);
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_slider_banner,container,false);
         ImageView imgBanner = view.findViewById(R.id.img_banner_slider);
         ConstraintLayout container_banner = view.findViewById(R.id.container_banner_slider);
 
