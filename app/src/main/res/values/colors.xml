@@ -17,5 +17,6 @@
     <color name="while80">#80ffffff</color>
     <color name="green">#38EC3E</color>
     <color name="gray">#969696</color>
+    <color name="grayLight">#E6E6E6</color>
     <color name="dark_green">#24AF32</color>
 </resources>
