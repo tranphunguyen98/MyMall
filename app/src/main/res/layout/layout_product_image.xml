@@ -30,19 +30,22 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout_indicator"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"
         app:layout_constraintBottom_toBottomOf="@+id/view_pager_image_detail_product"
         app:layout_constraintEnd_toEndOf="@+id/view_pager_image_detail_product"
         app:layout_constraintStart_toStartOf="parent"
-        app:tabBackground="@drawable/tab_selector"
+        app:tabBackground="@drawable/default_dot"
+        app:tabIndicator="@drawable/selected_dot"
+        android:animateLayoutChanges="true"
         app:tabGravity="center"
         app:tabPaddingStart="8dp"
         app:tabPaddingEnd="8dp"
-        app:tabIndicatorGravity="bottom"
-        app:tabIndicatorHeight="0dp" />
-
+        app:tabIndicatorGravity="center"
+        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorHeight="10dp"
+        />
     <TextView
         android:id="@+id/tv_name_product_detail"
         android:layout_width="wrap_content"
