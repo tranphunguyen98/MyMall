@@ -33,6 +33,17 @@
 
             <include layout="@layout/layout_product_description"/>
 
+            <include layout="@layout/rating_layout"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Đã hết trang"/>
+
         </LinearLayout>
 
     </ScrollView>

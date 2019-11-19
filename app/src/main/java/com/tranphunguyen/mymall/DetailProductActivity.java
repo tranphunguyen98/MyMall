@@ -3,6 +3,7 @@ package com.tranphunguyen.mymall;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -14,7 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 import com.tranphunguyen.mymall.adapter.DescriptionProductAdapter;
 import com.tranphunguyen.mymall.adapter.DetailProductSliderAdapter;
+import com.tranphunguyen.mymall.adapter.RatingAdapter;
 import com.tranphunguyen.mymall.model.ImageDetailProductModel;
+import com.tranphunguyen.mymall.model.RatingModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,7 @@ public class DetailProductActivity extends AppCompatActivity {
 
     private ViewPager viewPagerDescriptionProduct;
     private TabLayout tabLayoutDescriptionProduct;
+    private RecyclerView rcRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class DetailProductActivity extends AppCompatActivity {
         tabIndicator = this.findViewById(R.id.tablayout_indicator);
         viewPagerDescriptionProduct = this.findViewById(R.id.view_pager_description);
         tabLayoutDescriptionProduct = this.findViewById(R.id.tab_layout_description);
+        rcRating = this.findViewById(R.id.rc_rating_m);
 
         String[] listCategoryName = getResources().getStringArray(R.array.list_name_icon_category);
         String[] listCategoryLink = getResources().getStringArray(R.array.list_link_icon_category);
@@ -89,6 +94,18 @@ public class DetailProductActivity extends AppCompatActivity {
 
             }
         });
+
+
+        List<RatingModel> dataRating = new ArrayList<>();
+        dataRating.add(new RatingModel(5,12,50));
+        dataRating.add(new RatingModel(4,40,40));
+        dataRating.add(new RatingModel(3,30,20));
+        dataRating.add(new RatingModel(2,10,10));
+        dataRating.add(new RatingModel(1,5,12));
+
+        LinearLayoutManager linearLayoutManagerRating = new LinearLayoutManager(this);
+        rcRating.setLayoutManager(linearLayoutManagerRating);
+        rcRating.setAdapter(new RatingAdapter(dataRating));
     }
 
     @Override

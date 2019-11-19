@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="0dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_start_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_start_number"
+        app:layout_constraintStart_toEndOf="@+id/tv_start_number"
+        app:layout_constraintTop_toTopOf="@+id/tv_start_number"
+        app:srcCompat="@drawable/ic_start_16dp" />
+
+    <ProgressBar
+        android:id="@+id/prg_rating"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:progress="50"
+        android:progressTint="@color/green"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+        app:layout_constraintStart_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/tv_amount_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="18"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/prg_rating"
+        app:layout_constraintStart_toEndOf="@+id/prg_rating"
+        app:layout_constraintTop_toTopOf="@+id/prg_rating" />
+</androidx.constraintlayout.widget.ConstraintLayout>
