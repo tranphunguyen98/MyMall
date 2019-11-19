@@ -2,7 +2,8 @@
 <resources>
     <color name="colorPrimary">#CE0000</color>
     <color name="colorPrimaryDark">#CE0000</color>
-    <color name="colorPrimaryLight">#DD6D6D</color>
+    <color name="colorPrimaryLight">#F44336</color>
+    <color name="colorPrimaryLightWhile">#DD6D6D</color>
     <color name="colorAccent">#FFFFFF</color>
     <color name="colorSecond">#FFFFFF</color>
     <color name="backgroudTintEditText">#B3FFFFFF</color>
@@ -14,6 +15,7 @@
     <color name="backgroundProgress">#FFB9B9</color>
     <color name="white">#ffffff</color>
     <color name="while80">#80ffffff</color>
-    <color name="green">#4CAF50</color>
+    <color name="green">#38EC3E</color>
     <color name="gray">#969696</color>
+    <color name="dark_green">#24AF32</color>
 </resources>
