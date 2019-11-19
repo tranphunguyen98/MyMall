@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.tranphunguyen.mymall.adapter.DescriptionProductAdapter;
 import com.tranphunguyen.mymall.adapter.DetailProductSliderAdapter;
 import com.tranphunguyen.mymall.model.ImageDetailProductModel;
 
@@ -23,6 +24,9 @@ public class DetailProductActivity extends AppCompatActivity {
     private ViewPager viewPagerImage;
     private FloatingActionButton btnFavorite;
     private TabLayout tabIndicator;
+
+    private ViewPager viewPagerDescriptionProduct;
+    private TabLayout tabLayoutDescriptionProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class DetailProductActivity extends AppCompatActivity {
         viewPagerImage = this.findViewById(R.id.view_pager_image_detail_product);
         btnFavorite = this.findViewById(R.id.float_btn_favorite);
         tabIndicator = this.findViewById(R.id.tablayout_indicator);
+        viewPagerDescriptionProduct = this.findViewById(R.id.view_pager_description);
+        tabLayoutDescriptionProduct = this.findViewById(R.id.tab_layout_description);
 
         String[] listCategoryName = getResources().getStringArray(R.array.list_name_icon_category);
         String[] listCategoryLink = getResources().getStringArray(R.array.list_link_icon_category);
@@ -64,6 +70,25 @@ public class DetailProductActivity extends AppCompatActivity {
             }
         });
 
+        DescriptionProductAdapter adapter = new DescriptionProductAdapter(getSupportFragmentManager(),0,tabLayoutDescriptionProduct.getTabCount());
+        viewPagerDescriptionProduct.setAdapter(adapter);
+        viewPagerDescriptionProduct.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayoutDescriptionProduct));
+        tabLayoutDescriptionProduct.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPagerDescriptionProduct.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     @Override

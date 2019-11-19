@@ -1,8 +1,18 @@
 <resources>
     <string name="app_name">MyMall</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment1">Lorem ipsum dolor sit amet, eu diam scripta facilis usu. Vim
+erat persequeris concludaturque an, usu vidit nominati
+complectitur ex. Pri mundi albucius elaboraret id. Cu nam
+omnium audire necessitatibus.
+\n
+Id vel verear legimus dissentias, mea oratio petentium
+inciderint in. Ei ius populo similique, at mel brute petentium.
+Sit an vide integre, at harum blandit petentium usu, et mea
+eros alterum consulatu. Quot putant posidonium has ei,
+verear constituto sea ei. Deseruisse concludaturque mel ut.
+Alii senserit eum ne, est et graece tibique, civibus recusabo
+suscipiantur at vim.</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="forgot_password_italic"><u>Forgot Password?</u></string>
@@ -87,4 +97,7 @@
         <item>img_phone_1</item>
         <item>img_phone_2</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
