@@ -33,6 +33,7 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="temp_lorem">Lorem ipsum dolor sit amet, eu diam scripta facilis usu. Vimerat persequeris concludaturque an, usu</string>
 
     <string-array name="list_link_icon_category">
         <item>home_icon</item>
