@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.tranphunguyen.mymall.ProductOrderDetailFragment"
+        android:name="com.tranphunguyen.mymall.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
+        android:id="@+id/nav_wishlist"
         android:name="com.tranphunguyen.mymall.ui.share.ShareFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />

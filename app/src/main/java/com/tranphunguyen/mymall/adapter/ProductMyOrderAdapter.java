@@ -1,5 +1,7 @@
 package com.tranphunguyen.mymall.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.tranphunguyen.mymall.OrderDetailActivity;
 import com.tranphunguyen.mymall.R;
 
 public class ProductMyOrderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -32,7 +35,9 @@ public class ProductMyOrderAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        if(holder instanceof ViewHolder) {
+            ((ViewHolder) holder).bind();
+        }
     }
 
     @Override
@@ -43,6 +48,14 @@ public class ProductMyOrderAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     class ViewHolder extends RecyclerView.ViewHolder {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+        }
+
+        private void bind() {
+            this.itemView.setOnClickListener(view -> {
+                Context context = itemView.getContext();
+                Intent intent = new Intent(context, OrderDetailActivity.class);
+                context.startActivity(intent);
+            });
         }
     }
 }
