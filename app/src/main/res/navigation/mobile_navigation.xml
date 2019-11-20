@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/nav_wishlist"
-        android:name="com.tranphunguyen.mymall.ui.share.ShareFragment"
+        android:name="com.tranphunguyen.mymall.WishlistFragment"
         android:label="@string/menu_share"
         tools:layout="@layout/fragment_share" />
 
