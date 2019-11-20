@@ -11,10 +11,21 @@ import com.tranphunguyen.mymall.R;
 
 public class ProductCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    @Override
+    public int getItemViewType(int position) {
+        if(position >= 4) return 1;
+        else return 0;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_cart,parent,false);
+        View view;
+        if(viewType == 1) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_total_cart,parent,false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_product_cart,parent,false);
+        }
 
         return new ViewHolder(view);
     }
@@ -26,7 +37,7 @@ public class ProductCartAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 5;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
