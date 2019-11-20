@@ -11,9 +11,8 @@
         android:roundIcon="@drawable/app_round_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailProductActivity">
-
-        </activity>
+        <activity android:name=".OrderDetailActivity"></activity>
+        <activity android:name=".DetailProductActivity"></activity>
         <activity android:name=".CategoryActivity" />
         <activity
             android:name=".HomeActivity"
