@@ -12,20 +12,20 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_order"
         android:name="com.tranphunguyen.mymall.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_reward"
         android:name="com.tranphunguyen.mymall.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.tranphunguyen.mymall.ui.tools.ToolsFragment"
+        android:id="@+id/nav_cart"
+        android:name="com.tranphunguyen.mymall.CartFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 

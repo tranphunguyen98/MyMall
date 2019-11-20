@@ -9,15 +9,15 @@
             android:icon="@drawable/my_orders_1"
             android:title="My Mall" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_order"
             android:icon="@drawable/my_orders"
             android:title="My Orders" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_reward"
             android:icon="@drawable/my_rewards"
             android:title="My Rewards" />
         <item
-            android:id="@+id/nav_tools"
+            android:id="@+id/nav_cart"
             android:icon="@drawable/cart_black"
             android:title="My Cart" />
 
