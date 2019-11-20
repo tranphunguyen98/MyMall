@@ -14,26 +14,26 @@
     <fragment
         android:id="@+id/nav_order"
         android:name="com.tranphunguyen.mymall.MyOrderFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="My Order"
+        tools:layout="@layout/fragment_my_order" />
 
     <fragment
         android:id="@+id/nav_reward"
-        android:name="com.tranphunguyen.mymall.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:name="com.tranphunguyen.mymall.RewardFragment"
+        android:label="Reward"
+        tools:layout="@layout/fragment_reward" />
 
     <fragment
         android:id="@+id/nav_cart"
         android:name="com.tranphunguyen.mymall.CartFragment"
-        android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        android:label="Cart"
+        tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/nav_wishlist"
         android:name="com.tranphunguyen.mymall.WishlistFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:label="Wishlist"
+        tools:layout="@layout/fragment_wishlist"/>
 
     <fragment
         android:id="@+id/nav_send"

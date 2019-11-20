@@ -179,7 +179,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="40dp"
             android:layout_weight="0"
-            android:background="@drawable/backgroud_border_white_ripple"
+            android:background="@drawable/background_border_white_ripple"
             android:clickable="true"
             android:focusable="true"
             android:text="REDEEM"
